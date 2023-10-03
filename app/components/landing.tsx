@@ -4,12 +4,21 @@ import Image from 'next/image'
 
 export default function Landing() {
     const [cbIndex, setBackground] = useState(1);
-    const backgroundUrls = ["\"./photos/Putna/Putna.jpg\"", "\"./photos/Red_Lake/boats.jpg\""];
+    const backgroundUrls = ["\"./photos/Putna/Putna.jpg\"", "\"./photos/Red_Lake/boats.jpg\"", "\"./photos/Red_Lake/lake.jpg\""];
 
-    const galleryName : string[] = ["Putna Monastery", "Red Lake & Cheile Bicazului"]
+    const galleryName : string[] = ["Putna Monastery", "Red Lake & Cheile Bicazului", "Red Lake 2"]
 
-    const changeBackground = () => {
-        setBackground((cbIndex + 1) % 2); //This should keep the index withing 0 and 1
+    const changeBackground = (dir : string) => {
+        //setBackground((cbIndex + 1) % 2); //This should keep the index withing 0 and 1
+        if(dir == "left") {
+            if(cbIndex - 1 < 0) {
+                setBackground(2);
+            } else {
+                setBackground(cbIndex - 1);
+            }
+        } else {
+            setBackground((cbIndex + 1) % 3);
+        }
     }
 
     return(
@@ -24,10 +33,10 @@ export default function Landing() {
                         <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] rotate-180 transition-spacing linear group-hover:mt-[calc(((50px-20px)/2)+5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                     </a>
                 </div>
-                <div onClick={()=>{changeBackground()}} id="LeftGalleryButton" className="group absolute top-0 right-[-60px] h-[50px] w-[50px] bg-offwhite rounded-b-lg overflow-hidden">
+                <div onClick={()=>{changeBackground("left")}} id="LeftGalleryButton" className="group absolute top-0 right-[-60px] h-[50px] w-[50px] bg-offwhite rounded-b-lg overflow-hidden">
                     <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] rotate-[-90deg] transition-spacing linear group-hover:ml-[calc(((50px-15px)/2)-5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                 </div>
-                <div onClick={()=>{changeBackground()}} id="RightGalleryButton" className="group absolute top-0 right-[-120px] h-[50px] w-[50px] bg-offwhite rounded-b-lg overflow-hidden">
+                <div onClick={()=>{changeBackground("right")}} id="RightGalleryButton" className="group absolute top-0 right-[-120px] h-[50px] w-[50px] bg-offwhite rounded-b-lg overflow-hidden">
                     <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] rotate-90 transition-spacing linear group-hover:ml-[calc(((50px-15px)/2)+5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                 </div>
             </div>
