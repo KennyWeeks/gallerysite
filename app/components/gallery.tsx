@@ -1,11 +1,14 @@
 'use client'
-import {useRef} from "react";
+import {useRef, useContext} from "react";
 import ImageComp from "./imagecomponent";
 import { isDOMComponent } from 'react-dom/test-utils';
 import Image from "next/image";
+import { GalleryContext } from "../context/contextinit";
+
 
 const Gallery : React.FC = ()=>{
     const galleryAreaRef = useRef<HTMLDivElement>(null); //This will just be defaulted to null up here
+    const {cindex, cupdate} = useContext(GalleryContext);
 
     return(
         <div ref={galleryAreaRef} id="gallerycontent" className="w-[100vw] h-[100vh] bg-offwhite overflow-scroll scroll-smooth">
@@ -28,7 +31,7 @@ const Gallery : React.FC = ()=>{
                         <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] transition-spacing linear group-hover:mt-[calc(((50px-20px)/2)-5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                     </div>
 
-                    <div className="group w-[50px] h-[50px] bg-offwhite-darker rounded-full absolute bottom-0 left-0 shadow-blanketshadow">
+                    <div onClick={()=>{cupdate("idk")}} className="group w-[50px] h-[50px] bg-offwhite-darker rounded-full absolute bottom-0 left-0 shadow-blanketshadow">
                         <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] rotate-[-90deg] transition-spacing linear group-hover:ml-[calc(((50px-15px)/2)-5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                     </div>
 
