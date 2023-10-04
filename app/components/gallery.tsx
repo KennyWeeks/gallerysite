@@ -5,8 +5,11 @@ import { isDOMComponent } from 'react-dom/test-utils';
 import Image from "next/image";
 import { GalleryContext } from "../context/contextinit";
 
+interface GalleryInterface {
+    Data: {Gallery_Name: string, Description: string, Images: string[]}[]
+}
 
-const Gallery : React.FC = ()=>{
+const Gallery : React.FC<GalleryInterface> = ({Data})=>{
     const galleryAreaRef = useRef<HTMLDivElement>(null); //This will just be defaulted to null up here
     const {cindex, cupdate} = useContext(GalleryContext);
 
@@ -15,9 +18,9 @@ const Gallery : React.FC = ()=>{
 
             <div id="galleryarea" className="w-[100%] h-[300vh] relative">
 
-                <div className={"w-[20px] h-[20px] bg-red-200 absolute top-0 left-[calc((100vw-20px)/2)]"}></div>
-
-                <div className={"w-[20px] h-[20px] bg-blue-200 absolute bottom-0 left-[calc((100vw-20px)/2)]"}></div>
+                {Data[cindex]['Images'].map( imgs => (
+                    <ImageComp imageUrl={imgs}/>
+                ))}
 
             </div>
 
@@ -31,7 +34,7 @@ const Gallery : React.FC = ()=>{
                         <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] transition-spacing linear group-hover:mt-[calc(((50px-20px)/2)-5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                     </div>
 
-                    <div onClick={()=>{cupdate("idk")}} className="group w-[50px] h-[50px] bg-offwhite-darker rounded-full absolute bottom-0 left-0 shadow-blanketshadow">
+                    <div onClick={()=>{cupdate("left")}} className="group w-[50px] h-[50px] bg-offwhite-darker rounded-full absolute bottom-0 left-0 shadow-blanketshadow">
                         <Image className="ml-[calc((50px-15px)/2)] mt-[calc((50px-20px)/2)] rotate-[-90deg] transition-spacing linear group-hover:ml-[calc(((50px-15px)/2)-5px)]" src="/arrow.png" alt="arrow" width={15} height={20}/>
                     </div>
 

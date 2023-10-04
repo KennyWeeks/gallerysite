@@ -10,7 +10,7 @@ export default function Home() {
     <main className="w-[100vw] h-[100vh] overflow-hidden">
       <GalleryContextProvider>
         <Landing DataObject={Data}/> {/* Somehow need to get the gallery info from the landing to the actual gallery*/}
-        <Gallery/>
+        <Gallery Data={Data}/>
       </GalleryContextProvider>
     </main>
   )
