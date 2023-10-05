@@ -18,8 +18,8 @@ const Gallery : React.FC<GalleryInterface> = ({Data})=>{
 
             <div id="galleryarea" className="w-[100%] h-[300vh] relative">
 
-                {Data[cindex]['Images'].map( imgs => (
-                    <ImageComp imageUrl={imgs}/>
+                {Data[cindex]['Images'].map((imgs, index) => (
+                    <ImageComp key={index} imageUrl={imgs}/>
                 ))}
 
             </div>

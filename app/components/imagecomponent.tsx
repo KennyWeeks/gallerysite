@@ -22,7 +22,7 @@ const ImageComp : React.FC<ImageComp> = ({imageUrl}) => {
 
         if(path.charAt(path.length - 1) == 'l') {
             //Landscape
-            return 600;
+            return 675;
         } else {
             return 300;
         }
