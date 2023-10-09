@@ -16,11 +16,13 @@ const Gallery : React.FC<GalleryInterface> = ({Data})=>{
     return(
         <div ref={galleryAreaRef} id="gallerycontent" className="w-[100vw] h-[100vh] bg-offwhite overflow-scroll scroll-smooth">
 
-            <div id="galleryarea" className="w-[100%] h-[300vh] relative">
+            <div id="galleryarea" className="w-[100%] h-[auto] min-h-screen py-[10px] relative">
 
-                {Data[cindex]['Images'].map((imgs, index) => (
-                    <ImageComp key={index} imageUrl={imgs}/>
-                ))}
+                <div id="in-gallery" className="w-[90%] flex justify-evenly flex-wrap items-center ml-[5%]">
+                    {Data[cindex]['Images'].map((imgs, index) => (
+                        <ImageComp key={index} imageUrl={imgs}/>
+                    ))}
+                </div>
 
             </div>
 
