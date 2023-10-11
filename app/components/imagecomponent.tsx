@@ -4,7 +4,7 @@ import Image from "next/image";
 import useInterObs from "./intersectionobserver";
 
 interface ImageComp {
-    imageUrl: string
+    imageUrl: string,
 }
 const ImageComp : React.FC<ImageComp> = ({imageUrl}) => {
     const [visible, setVisible] = React.useState(false);
